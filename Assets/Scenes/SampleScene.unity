@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &12632846 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889886593113061834, guid: ff112b8046f28c34bb938b41532cc71a, type: 3}
-  m_PrefabInstance: {fileID: 753231691}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &305337924
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,10 +395,7 @@ MonoBehaviour:
   text: {fileID: 605058677}
   sound_1: {fileID: 630259988}
   sound_2: {fileID: 1374609375}
-  terrains:
-  - {fileID: 1466096026}
-  - {fileID: 12632846}
-  - {fileID: 1068606952}
+  lastTerrain: {fileID: 1068606952}
   currentBehaviour: 1
 --- !u!1001 &435949830
 PrefabInstance:
@@ -1468,11 +1460,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6889886593113061835, guid: ff112b8046f28c34bb938b41532cc71a, type: 3}
   m_PrefabInstance: {fileID: 1423852400}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1466096026 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889886593113061834, guid: ff112b8046f28c34bb938b41532cc71a, type: 3}
-  m_PrefabInstance: {fileID: 1147032592}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1474370411
 GameObject:

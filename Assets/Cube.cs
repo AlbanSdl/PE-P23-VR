@@ -23,13 +23,7 @@ public class Cube : MonoBehaviour {
     private GameObject? sound_2;
 
     [SerializeField]
-    private List<GameObject> terrains = new List<GameObject>();
-    public GameObject? currentTerrain { get {
-        return terrains[0];
-    }}
-    public void PushTerrain(GameObject terrain) {
-        terrains.Add(terrain);
-    }
+    private GameObject lastTerrain;
 
     private double startTime;
 
@@ -63,21 +57,23 @@ public class Cube : MonoBehaviour {
         rb.velocity = new Vector3(speedFactor * (1 + Mathf.Sqrt((float) (Time.timeAsDouble - this.startTime) / 50)), rb.velocity.y);
     }
 
-    void LateUpdate() {
-        if (currentTerrain != null && this.transform.position.x + this.transform.localScale.x >= currentTerrain.transform.position.x - currentTerrain.transform.localScale.x / 2) {
-            this.terrains.RemoveAt(0);
-            // Use Type to apply effect
-            this.ApplyTerrainType(currentTerrain?.GetComponent<Terrain>()?.type ?? 0);
-            currentTerrain?.GetComponent<Terrain>()?.OnReached();
-            // Add next terrain
-            GameObject prefab = terrainPrefabs[Random.Range(0, terrainPrefabs.Count)];
-            GameObject last = terrains[terrains.Count - 1];
-            GameObject instance = Instantiate(prefab, last.transform.position + new Vector3(last.transform.localScale.x / 2 + prefab.transform.localScale.x / 2, 0), Quaternion.identity, terrainContainer?.transform);
-            instance.GetComponent<Terrain>().type = (TerrainType) Random.Range(0, 2);
-            this.PushTerrain(instance);
-            // Increment score
-            text!.GetComponent<TMPro.TextMeshProUGUI>().text = "Score : " + ++this.score;
-        }
+    private void OnTriggerEnter2D(Collider2D currentTerrain) {
+        // Use Type to apply effect
+        this.ApplyTerrainType(currentTerrain.GetComponent<Terrain>().type);
+        currentTerrain.GetComponent<Terrain>().OnReached();
+
+        // Add next terrain
+        GameObject prefab = terrainPrefabs[Random.Range(0, terrainPrefabs.Count)];
+        GameObject instance = Instantiate(prefab, lastTerrain.transform.position + new Vector3(lastTerrain.transform.localScale.x / 2 + prefab.transform.localScale.x / 2, 0), Quaternion.identity, terrainContainer?.transform);
+        instance.GetComponent<Terrain>().type = (TerrainType) Random.Range(0, 2);
+        lastTerrain = instance;
+
+        // Increment score
+        text!.GetComponent<TMPro.TextMeshProUGUI>().text = "Score : " + ++this.score;
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        Destroy(other, 10);
     }
 
     void ApplyTerrainType(TerrainType type) {
