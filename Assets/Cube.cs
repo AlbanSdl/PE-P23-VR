@@ -61,6 +61,7 @@ public class Cube : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D currentTerrain) {
+        if (currentTerrain.tag == "spike") return;
         // Use Type to apply effect
         byte type = (byte) Random.Range(0, 2);
         if (this.currentBehaviour != type) this.ResetGravity();

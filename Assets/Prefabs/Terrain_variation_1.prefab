@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2247437648968187134}
   m_Layer: 0
   m_Name: Triangle (1)
-  m_TagString: Untagged
+  m_TagString: spike
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -2.398
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7713609226086140273, guid: ff112b8046f28c34bb938b41532cc71a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ff112b8046f28c34bb938b41532cc71a, type: 3}
 --- !u!4 &7235568169741757111 stripped
 Transform:
