@@ -30,7 +30,7 @@ public class LineManager : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(-normal, upwards);
 
             // Position text
-            Vector3 position = from + direction * 0.5f + upwards * 0.2f;
+            Vector3 position = from + direction * 0.5f + upwards * 0.01f;
 
             TextMeshPro inst = Instantiate(textPrefab, position, rotation);
             inst.SetText(distance.ToString("N2"));
