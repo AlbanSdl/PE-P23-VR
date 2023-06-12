@@ -21,7 +21,6 @@ public class WinCondition : MonoBehaviour
     public void WinScreen() {
         if (RightCount == 4) {
             // Win
-            Debug.Log("You win!");
             winParticles.Play();
         }
     }
